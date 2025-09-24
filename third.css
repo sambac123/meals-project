@@ -164,7 +164,7 @@ display: inline-block;
 .mealdetails{
   display: grid;
   grid-template-columns: 25% 75%;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 30px;
 }
 .mealspage{
