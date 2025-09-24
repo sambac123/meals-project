@@ -111,7 +111,8 @@ if (mealId) {
         <div class="">
          <h2 class="heading">${m.strMeal}</h2>
         <p><strong>Category:</strong> ${m.strCategory}</p>
-        <p><strong>Area:</strong> ${m.strArea}</p>
+          ${m.strSource ? `<h6> Source: <a href="${m.strSource}" target="_blank">View Source</a></h6>` : ""}
+          ${m.strYoutube ? `<h6>Youtube: <a href="${m.strYoutube}" target="_blank">Watch on YouTube</a></h6>` : ""}
         <h4>Ingredients:</h4>
         <ul class="list row row-cols-4 col-gap-5 row-g-5 ">
           ${getIngredientsList(m).map(i => `<li>${i}</li>`).join("")}
@@ -120,6 +121,7 @@ if (mealId) {
         </div>
         <h4>Instructions:</h4>
         <li>${m.strInstructions}</li>
+
         </div>
          
       `;
