@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="./first.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+   
+<nav class="navbar bg-body-tertiary sticky-top ">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand text-white" href="#">MEAL FINDER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="but"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" data-category="Beef">Beef</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Chicken">Chicken</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Dessert">Dessert</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Lamb">Lamb</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Miscellaneous">Miscellaneous</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Pasta">Pasta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="pork">Pork</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" data-category="Seafood">Seafood</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Side">Side</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Starter">Starter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Vegan">Vegan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Vegetarian">Vegetarian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Breakfast">Breakfast</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Goat">Goat</a>
+          </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</nav> 
+<div class="searchbar pt-5 position-relative">
+  <div class="overlay position-absolute h-100"></div>
+  <input type="text" name="text" class="inputs" placeholder="Search items-(Press Enter)......">
+  <a href="./mealspage.html"></a>
+  <i class="icon1 bi bi-search"></i>
+  <h2>What are your favorite cuisines?</h2>
+  <P>PERSONALIZE YOUR EXPERIENCE</P>
+</div>
+
+
+<h2 class="section"> CATEGORIES</h2>
+<div id="product"></div>
+
+<div id="categoryDetails"></div>
+
+<!-- //------- Search items-->
+<h2 class="section2">MEALS</h2>
+<div id="mealsitems"></div>
+<div id="mealDetails"></div>
+<div id="mealsList"></div>
+
+
+
+<!-- <h2 class="section3">DETAILS</h2> -->
+
+
+<script>
+ const searchInput = document.querySelector(".inputs")
+ const mealscontainer1= document.querySelector("#mealsitems")
+ const categoryDetails= document.querySelector("#categoryDetails")
+ const mealslist= document.querySelector("#mealsList")
+ const mealsdetails=document.querySelector("#mealDetails")
+
+   fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+  .then((res)=>res.json())
+  .then(data=>{
+      const productcontainer=document.querySelector("#product")
+      data.categories.forEach(prod => {
+        const card = document.createElement("div")
+        card.classList.add("product")
+         card.setAttribute("data-category", prod.strCategory.toLowerCase());
+        card.innerHTML=`
+        <label>${prod.strCategory}</label>
+        <img class="catimage" src=${prod.strCategoryThumb} alt="${prod.strCategory}"/>`;
+        productcontainer.append(card);
+        //---fetch details------
+
+        card.addEventListener("click", ()=>{
+          //  fetchMealsByCategory(prod.strCategory);
+          categoryDetails.innerHTML=`
+          <div class="discription mx-5">
+          <h1 class="tittle2">${prod.strCategory}</h1>
+          <p class="">${prod.strCategoryDescription}</p>
+          </div>`;
+          fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${prod.strCategory}`)
+          .then(res=>res.json())
+          .then(mealdata =>{
+
+            mealslist.innerHTML=""
+            mealdata.meals.forEach(meal=>{
+              const mealcards= document.createElement("div")
+              mealcards.classList.add("meal-cards");
+              mealcards.innerHTML=`
+              <img class="images" src="${meal.strMealThumb}" alt="${meal.strMeal}">
+              <h4>${meal.strMeal.slice(0,15)}....</h4>
+              `;
+              mealslist.append(mealcards);
+            });
+          });
+        });
+        
+      });
+  })
+  .catch(err=>console.log(err))
+    const productContainer = document.querySelector("#product");
+    const navLinks = document.querySelectorAll(".nav-link[data-category]");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const category = link.getAttribute("data-category");
+
+    // Hide main categories grid
+    productContainer.style.display = "none";
+    document.querySelector(".section").style.display = "none";
+
+    // Show category title & description
+    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+      .then(res => res.json())
+      .then(data => {
+        const cate = data.categories.find(c => c.strCategory.toLowerCase() === category.toLowerCase());
+        if (cate) {
+          categoryDetails.innerHTML = `
+            <div class="discription mt-5 mx-4">
+              <h2 class="tittle2">${cate.strCategory}</h2>
+              <p>${cate.strCategoryDescription}</p>
+            </div>
+          `;
+        }
+      });
+
+    // Fetch and display meals
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then(res => res.json())
+      .then(data => {
+        disPlayMeals(data.meals);
+      })
+      .catch(() => {
+        mealscontainer1.innerHTML = "<p>Error fetching meals...</p>";
+      });
+  });
+});
+
+// Function to display meals
+function disPlayMeals(meals){
+  mealscontainer1.innerHTML = "";
+  if(!meals || meals.length === 0){
+    mealscontainer1.innerHTML = "<p>No meals found!</p>";
+    return;
+  }
+  meals.forEach(meal => {
+    const mealCard = document.createElement("div");
+    mealCard.classList.add("meal-card");
+    mealCard.innerHTML = `
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+      <h5 class="tittle">${meal.strMeal.slice(0, 20)}...</h5>
+    `;
+    mealCard.addEventListener("click",()=>{
+      showMealDetails(meal.idMeal);
+    });
+    mealscontainer1.appendChild(mealCard);
+  
+  });
+}
+
+
+   function fetchCategories() {
+      fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+        .then(res => res.json())
+        .then(data => displayCategories(data.categories))
+        .catch(err => console.error(err));
+    }
+
+    //-------- Display categories----------
+    function displayCategories(categories) {
+      productContainer.innerHTML = "";
+      categories.forEach(prod => {
+        const card = document.createElement("div");
+        card.classList.add("product");
+        card.innerHTML = `
+         <a href="mealsdetails.html?category=${encodeURIComponent(prod.strCategory)}">
+          <img src="${prod.strCategoryThumb}" alt="${prod.strCategory}">
+          </a>
+          <label>${prod.strCategory}</label>
+        `;
+
+        // Navigate to details page
+        card.addEventListener("click", () => {
+          window.location.href = `details.html?category=${prod.strCategory}`;
+        });
+
+        productContainer.appendChild(card);
+      });
+    }
+    // productContainer.style.display="none"
+    // document.querySelector(".section3").style.display = "none";
+
+    fetchCategories();
+
+  //---meals-------
+
+
+  searchInput.addEventListener("keyup", (e)=>{
+    if (e.key=== "Enter"){
+      const searchText = e.target.value.trim();
+      if (!searchText){
+        mealscontainer1.innerHTML= "<p>please enter a meal name..</p>";
+        return;
+      }
+      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
+      .then((res)=>res.json())
+      .then((data)=>{
+         document.querySelector("#product").style.display ="none";
+         document.querySelector(".section").style.display ="none";
+        disPlayMeals(data.meals)
+      })
+      .catch(()=>{
+        mealscontainer1.innerHTML="<p> Error fetching meals..</p>";
+      });
+    }
+  })
+
+  // function fetchMealsByCategory(category){
+  //   productContainer.style.display="none";
+  //   document.querySelector(".section").style.display="none";
+  // }
+
+
+//----Search bar images links-------
+
+
+  function fetchMealsByCategory(category){
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+     
+      disPlayMeals(data.meals);
+    })
+    .catch(()=>{
+      mealscontainer1.innerHTML="<p>Error fetching meals...</p>";
+    });
+  }
+
+
+
+</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

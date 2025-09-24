@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="./second.css">
+</head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<body>
+<!-- navbar -->
+
+<nav class="navbar bg-body-tertiary sticky-top ">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand text-white" href="#">MEAL FINDER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="but"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" data-category="beef">Beef</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Chicken">Chicken</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Dessert">Dessert</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Lamb">Lamb</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Miscellaneous">Miscellaneous</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Pasta">Pasta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="pork">Pork</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" data-category="Seafood">Seafood</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Side">Side</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Starter">Starter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="vegan">Vegan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Vegetarian">Vegetarian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Breakfast">Breakfast</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-category="Goat">Goat</a>
+          </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</nav> 
+
+
+<!-- search bar -->
+<div class="searchbar pt-5 position-relative">
+  <div class="overlay position-absolute h-100"></div>
+  <input type="text" name="text" class="inputs" placeholder="Search recipes here......">
+  <a href="./mealspage.html"></a>
+  <i class="icon1 bi bi-search"></i>
+  </a>
+  <h2>What are your favorite cuisines?</h2>
+  <P>PERSONALIZE YOUR EXPERIENCE</P>
+</div>
+
+
+<!-- <h2 class="section">DETAILS</h2> -->
+ <h2 class="details">DETAILS</h2>
+  <div id="categoryDetails"></div>
+  <div id="mealsList"></div>
+  <div id="mealDetails"></div>
+
+  <script>
+    const categoryDetails = document.querySelector("#categoryDetails");
+    const mealsList = document.querySelector("#mealsList");
+    const mealDetails=document.querySelector("#mealDetails");
+
+    // Get category name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get("category");
+
+    //  Fetch all categories to get description
+    function fetchCategoryDetails() {
+      fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+        .then(res => res.json())
+        .then(data => {
+          const categoryData = data.categories.find(cat => cat.strCategory === category);
+          if (categoryData) {
+            displayCategoryDetails(categoryData);
+            fetchMealsByCategory(categoryData.strCategory);
+          }
+        })
+        .catch(err => console.error(err));
+    }
+
+    //Show category description
+    function displayCategoryDetails(categoryData) {
+      categoryDetails.innerHTML = `
+        <div class="description mx-3 p-4">
+          <h1>${categoryData.strCategory}</h1>
+          <p>${categoryData.strCategoryDescription}</p>
+        </div>
+      `;
+    }
+
+    //  Fetch meals inside category
+    function fetchMealsByCategory(categoryName) {
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`)
+        .then(res => res.json())
+        .then(data => displayMeals(data.meals))
+        .catch(err => console.error(err));
+    }
+
+    //  Display meals with anchor tags
+    function displayMeals(meals) {
+      mealsList.innerHTML = "";
+      if (!meals||meals.length===0){
+        mealsList.innerHTML="<p>No meals found!</p>";
+        return;
+      }
+      meals.forEach(meal => {
+        const mealCard = document.createElement("div");
+        mealCard.classList.add("meal-cards");
+        mealCard.innerHTML = `
+        <a href="third.html?id=${meal.idMeal}">
+            <img class="images" src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            </a>
+            <h4 class="tittle3">${meal.strMeal.slice(0,15)}...</h4>
+            
+        `;
+        mealCard.addEventListener("click",()=>{
+      showMealDetails(meal.idMeal);
+    });
+        mealsList.appendChild(mealCard);
+      });
+    }
+
+    // Start
+    fetchCategoryDetails();
+
+
+
+      
+// //---- show meals details-------
+//   function showMealDetails(mealId){
+//   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+//   .then(res=>res.json())
+//   .then((data)=>{
+//     const m = data.meals[0];
+//     document.querySelector("#mealDetails").innerHTML =`
+//       <h2>${m.strMeal}</h2>
+//       <img src="${m.strMealThumb}" alt="${m.strMeal}">
+//       <p><strong>category:</strong>${m.strCategory}</p>
+//       <p><strong>Area:</strong>${m.strArea}</p>
+//       <h4>Ingredients:</h4>
+//       <ul>
+//         ${getIngredientsList(m).map(i=>`<li>${i}</li>`).join("")}
+//         </ul>
+//         <h4>Instructions:</h4>
+//         <p>${m.strInstructions}</p>
+//         `
+
+//   })
+//   .catch(()=>{document.querySelector("#mealDetails").innerHTML="<p>Error loading meal details...</p>"})
+// }
+// function getIngredientsList(meal){
+//   let ingredients=[];
+//   for(let i=1; i<=20; i++){
+//     if(meal[`strIngredient${i}`]){ 
+//     ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`)
+//     };
+//   }
+//   return ingredients;
+// }
+
+
+
+  </script>
+
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

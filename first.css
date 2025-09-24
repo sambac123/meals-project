@@ -1,0 +1,182 @@
+      body{
+        background-color: rgba(211, 211, 211, 0.604);
+        /* padding-top: 100px; */
+      }
+      .container-fluid{
+        background-color: rgb(234, 93, 42);
+       
+  
+      }
+      .navbar{
+        padding: 0px !important;
+      }
+      #but{
+        border: 2px solid orange;
+        border-radius: 100px;
+        color: orange;
+
+      }
+      .inputs{
+        border-radius: 30px;
+        margin-top: 20px;
+        padding: 5px;
+        width: 350px;
+        
+      }
+      .searchbar{
+        text-align: center;
+        background-image: url('./food\ menu\ bg.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    
+        
+
+      }
+      .icon1{
+        gap: 5px;
+        border: 2px solid orangered;
+        display: inline;
+        padding: 10px;
+        border-radius: 50px;
+        color: orangered;
+        width: 80px;
+      }
+      #product{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        margin-left: 75px;
+        margin-top: 30px;
+        padding: 10px;
+        
+        
+      }
+      img{
+        box-shadow: 5px 5px 20px black;
+        width: 300px;
+        padding: 15px;
+        border-radius: 15px;
+        
+      }
+      .section{
+        margin-left: 50px;
+        margin-top: 50px;
+      }
+      .section{
+       border-bottom: 4px solid orangered;
+       display: inline-block;
+       width: 70px;
+       padding-bottom: 5px;
+
+      }
+      .searchbar {
+ 
+  position: relative; /* make it a positioning context */
+  overflow: hidden;   /* ensures overlay doesn’t spill */
+  padding: 100px 20px; /* adjust as you like */
+  color: #fff;        /* text color for contrast */
+}
+
+.searchbar .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* black overlay with opacity */
+  z-index: 1; /* keep it behind text */
+}
+
+.searchbar input,
+.searchbar h2,
+.searchbar p,
+.searchbar i {
+  position: relative;
+  z-index: 2; /* make content appear above overlay */
+}
+.product{
+  position: relative;
+}
+label{
+  background-color:orangered ;
+  border-radius: 3px;
+  padding: 4px 5px;
+  margin: 8px;
+  position: absolute;
+  color: white;
+  right: 0;
+}
+#mealsitems{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-left: 0px;
+  gap: 50px;
+ justify-content: center;
+  margin-top: 10px;
+}
+ .section2{
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.section2{
+  border-bottom: 4px solid orangered;
+  display: inline-block;
+  width: 70px;
+  padding-bottom: 5px;
+
+}
+.meals-card{
+  box-shadow: 10px 10px 20px whitesmoke;
+  border-radius: 10px;
+
+}
+.images{
+  width: 250px;
+  border-radius:30px;
+  padding: 20px;
+  
+}
+.tittle{
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: orangered;
+  color: white;
+  padding: 5px;
+  box-shadow: 10px 10px 20px whitesmoke;
+}
+#mealsList{
+    display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-left: 0px;
+  gap: 50px;
+ justify-content: center;
+  margin-top: 10px;
+}
+.images{
+  width: 250px;
+  border-radius:30px;
+  padding: 20px;
+}
+.meal-cards{
+    box-shadow: 10px 10px 20px whitesmoke;
+  border-radius: 10px;
+}
+.discription{
+  border: 2px solid orangered;
+  padding: 10px;
+}
+.tittle2{
+font-size: 24px;
+font-weight: bold;
+
+text-transform: uppercase;
+margin-bottom: 10px;
+border-bottom: 2px solid orangered;
+display: inline-block;
+}
+.nav-item:hover{
+  color: orangered;
+  cursor: pointer;
+}
