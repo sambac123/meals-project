@@ -114,9 +114,9 @@ if (mealId) {
           ${m.strSource ? `<h6> Source: <a href="${m.strSource}" target="_blank">View Source</a></h6>` : ""}
           ${m.strYoutube ? `<h6>Youtube: <a href="${m.strYoutube}" target="_blank">Watch on YouTube</a></h6>` : ""}
         <h4>Ingredients:</h4>
-        <ul class="list row row-cols-4 col-gap-5 row-g-5 ">
+        <ol type="1" class="list row row-cols-4 col-gap-5 row-g-5 ">
           ${getIngredientsList(m).map(i => `<li>${i}</li>`).join("")}
-        </ul> 
+        </ol> 
         </div>
         </div>
         <h4>Instructions:</h4>
