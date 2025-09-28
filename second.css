@@ -15,13 +15,13 @@
       .inputs{
         border-radius: 30px;
         margin-top: 20px;
-        padding: 5px;
-        width: 350px;
-        text-align: center;
+        padding: 10px;
+        width: 320px;
+        /* text-align: center; */
       }
       .searchbar{
         text-align: center;
-        background-image: url('./food\ menu\ bg.jpg');
+        background-image: url('./food\ menu\ img.jpg');
         background-size: cover;
         background-repeat: no-repeat;
     
@@ -101,12 +101,18 @@
     
       }
       .images{
-        width: 250px;
-        border-radius: 30px;
-        padding: 20px;
+        width: 280px;
+        border-radius: 40px;
+        padding: 25px;
+      }
+      .images:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+        border-radius: 40px;
+         transition: transform 0.3s ease;
       }
       .meal-cards{
-        box-shadow: 10px 10px 20px black;
+        box-shadow: 5px 5px 10px black;
         border-radius: 10px;
        
 
@@ -120,7 +126,7 @@
         border-bottom: 4px solid orangered;
         width: 70px;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
       }
       .tittle3{
         justify-content: center;

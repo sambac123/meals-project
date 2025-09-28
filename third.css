@@ -18,13 +18,13 @@ body{
       .inputs{
         border-radius: 30px;
         margin-top: 20px;
-        padding: 5px;
-        width: 350px;
+        padding: 10px;
+        width: 320px;
         
       }
       .searchbar{
         text-align: center;
-        background-image: url('./food\ menu\ bg.jpg');
+        background-image: url('./food\ menu\ img.jpg');
         background-size: cover;
         background-repeat: no-repeat;
     
@@ -98,6 +98,7 @@ body{
   border-bottom: 4px solid orangered;
   width: 70px;
 
+
 }
 #product{
  display: flex;
@@ -158,8 +159,16 @@ display: inline-block;
   border: 2px solid orangered;
   background-color: orangered;
   color: white;
-  /* row-gap: 50px; */
   column-gap: 50px;
+  border-radius: 10px;
+}
+.list {
+  padding-left: 30px !important;  /* pushes text inward */
+  margin-left: 10px;              /* adds extra space if needed */
+}
+
+.list li {
+  margin-bottom: 8px;  /* spacing between list items */
 }
 .mealdetails{
   display: grid;
@@ -183,6 +192,8 @@ display: inline-block;
   margin-left: 30px;
   border-bottom: 4px solid orangered;
   width: max-content;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 ol.list {
   list-style: none; /* remove default numbers */
@@ -213,4 +224,10 @@ ol.list li::before {
   color: #fff;             
   background: #ff4500;      
   background-color: rgb(5, 93, 89);
+}
+strong{
+  font-size: larger;
+}
+.source{
+  font-size: larger;
 }

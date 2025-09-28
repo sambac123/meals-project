@@ -19,13 +19,13 @@
       .inputs{
         border-radius: 30px;
         margin-top: 20px;
-        padding: 5px;
+        padding: 10px;
         width: 350px;
         
       }
       .searchbar{
         text-align: center;
-        background-image: url('./food\ menu\ bg.jpg');
+        background-image: url('./food\ menu\ img.jpg');
         background-size: cover;
         background-repeat: no-repeat;
     
@@ -33,13 +33,23 @@
 
       }
       .icon1{
-        gap: 5px;
+        gap: 5px; 
         border: 2px solid orangered;
         display: inline;
         padding: 10px;
-        border-radius: 50px;
+         border-radius: 50px;
         color: orangered;
-        width: 80px;
+       
+      }
+      .nav-link:hover{
+        /* transform: scale(1.03); */
+        /* color: orangered; */
+        cursor: pointer;
+        background: orangered;
+        border-radius: 20px;
+        padding: 10px;
+        width: min-content;
+        color: white;
       }
       #product{
         display: flex;
@@ -106,6 +116,21 @@ label{
   color: white;
   right: 0;
 }
+.seameals{
+  width: 250px;
+  border-radius: 25px;
+   transition: transform 0.5s ease;
+   /* display: block; */
+}
+.seameals:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+  /* box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); */
+}
+.meal-card {
+  transition: none !important;
+  box-shadow: none !important;
+}
 #mealsitems{
   display: flex;
   flex-wrap: wrap;
@@ -118,12 +143,15 @@ label{
  .section2{
   margin-left: 50px;
   margin-top: 50px;
+  /* display: none; */
 }
 .section2{
   border-bottom: 4px solid orangered;
   display: inline-block;
   width: 70px;
   padding-bottom: 5px;
+  margin-bottom: 30px;
+  display: none;
 
 }
 .meals-card{
@@ -132,9 +160,10 @@ label{
 
 }
 .images{
-  width: 250px;
+  width: 100px;
   border-radius:30px;
   padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   
 }
 .tittle{
@@ -155,7 +184,7 @@ label{
   margin-top: 10px;
 }
 .images{
-  width: 250px;
+  width:250px;
   border-radius:30px;
   padding: 20px;
 }

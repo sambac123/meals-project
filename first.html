@@ -22,6 +22,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="but"></button>
       </div>
       <div class="offcanvas-body">
+        <h2>Items</h2>
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" href="#" data-category="Beef">Beef</a>
@@ -73,8 +74,10 @@
 <div class="searchbar pt-5 position-relative">
   <div class="overlay position-absolute h-100"></div>
   <input type="text" name="text" class="inputs" placeholder="Search items-(Press Enter)......">
-  <a href="./mealspage.html"></a>
   <i class="icon1 bi bi-search"></i>
+  
+  <a href="./mealspage.html"></a>
+  <!-- <i class="icon1 bi bi-search"></i> -->
   <h2>What are your favorite cuisines?</h2>
   <P>PERSONALIZE YOUR EXPERIENCE</P>
 </div>
@@ -146,6 +149,7 @@
   .catch(err=>console.log(err))
     const productContainer = document.querySelector("#product");
     const navLinks = document.querySelectorAll(".nav-link[data-category]");
+    
 
 navLinks.forEach(link => {
   link.addEventListener("click", (e) => {
@@ -183,6 +187,7 @@ navLinks.forEach(link => {
   });
 });
 
+
 // Function to display meals
 function disPlayMeals(meals){
   mealscontainer1.innerHTML = "";
@@ -194,7 +199,7 @@ function disPlayMeals(meals){
     const mealCard = document.createElement("div");
     mealCard.classList.add("meal-card");
     mealCard.innerHTML = `
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+      <img class="seameals" src="${meal.strMealThumb}" alt="${meal.strMeal}">
       <h5 class="tittle">${meal.strMeal.slice(0, 20)}...</h5>
     `;
     mealCard.addEventListener("click",()=>{
@@ -216,6 +221,7 @@ function disPlayMeals(meals){
     //-------- Display categories----------
     function displayCategories(categories) {
       productContainer.innerHTML = "";
+      //  document.querySelector(".section").style.display = "block";
       categories.forEach(prod => {
         const card = document.createElement("div");
         card.classList.add("product");
@@ -246,7 +252,8 @@ function disPlayMeals(meals){
     if (e.key=== "Enter"){
       const searchText = e.target.value.trim();
       if (!searchText){
-        mealscontainer1.innerHTML= "<p>please enter a meal name..</p>";
+        mealscontainer1.innerHTML= 
+        "<p>please enter a meal name..</p>";
         return;
       }
       fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
@@ -254,6 +261,7 @@ function disPlayMeals(meals){
       .then((data)=>{
          document.querySelector("#product").style.display ="none";
          document.querySelector(".section").style.display ="none";
+          document.querySelector(".section2").style.display="block";
         disPlayMeals(data.meals)
       })
       .catch(()=>{
