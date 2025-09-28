@@ -226,8 +226,5 @@ ol.list li::before {
   background-color: rgb(5, 93, 89);
 }
 strong{
-  font-size: larger;
-}
-.source{
-  font-size: larger;
+  font-size: large;
 }
