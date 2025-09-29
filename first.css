@@ -57,16 +57,13 @@
         gap: 50px;
         margin-left: 75px;
         margin-top: 30px;
-        padding: 10px;
-        
-        
+        padding: 10px; 
       }
       img{
         box-shadow: 5px 5px 20px black;
         width: 300px;
         padding: 15px;
-        border-radius: 15px;
-        
+        border-radius: 15px;  
       }
       .section{
         margin-left: 50px;
@@ -77,16 +74,13 @@
        display: inline-block;
        width: 70px;
        padding-bottom: 5px;
-
       }
       .searchbar {
- 
   position: relative; /* make it a positioning context */
   overflow: hidden;   /* ensures overlay doesn’t spill */
   padding: 100px 20px; /* adjust as you like */
   color: #fff;        /* text color for contrast */
 }
-
 .searchbar .overlay {
   position: absolute;
   top: 0;
@@ -96,7 +90,6 @@
   background: rgba(0,0,0,0.5); /* black overlay with opacity */
   z-index: 1; /* keep it behind text */
 }
-
 .searchbar input,
 .searchbar h2,
 .searchbar p,
@@ -152,19 +145,16 @@ label{
   padding-bottom: 5px;
   margin-bottom: 30px;
   display: none;
-
 }
 .meals-card{
   box-shadow: 10px 10px 20px whitesmoke;
   border-radius: 10px;
-
 }
 .images{
   width: 100px;
   border-radius:30px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
 }
 .tittle{
   margin-top: 20px;
@@ -200,7 +190,6 @@ label{
 .tittle2{
 font-size: 24px;
 font-weight: bold;
-
 text-transform: uppercase;
 margin-bottom: 10px;
 border-bottom: 2px solid orangered;

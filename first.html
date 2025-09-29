@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   <link rel="stylesheet" href="./first.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
 </head>
-<body>
-   
+<body> 
 <nav class="navbar bg-body-tertiary sticky-top ">
   <div class="container-fluid p-2">
     <a class="navbar-brand text-white" href="#">MEAL FINDER</a>
@@ -79,31 +76,21 @@
   <h2>What are your favorite cuisines?</h2>
   <P>PERSONALIZE YOUR EXPERIENCE</P>
 </div>
-
-
 <h2 class="section"> CATEGORIES</h2>
 <div id="product"></div>
-
 <div id="categoryDetails"></div>
-
 <!-- //------- Search items-->
 <h2 class="section2">MEALS</h2>
 <div id="mealsitems"></div>
 <div id="mealDetails"></div>
 <div id="mealsList"></div>
-
-
-
 <!-- <h2 class="section3">DETAILS</h2> -->
-
-
 <script>
  const searchInput = document.querySelector(".inputs")
  const mealscontainer1= document.querySelector("#mealsitems")
  const categoryDetails= document.querySelector("#categoryDetails")
  const mealslist= document.querySelector("#mealsList")
  const mealsdetails=document.querySelector("#mealDetails")
-
    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
   .then((res)=>res.json())
   .then(data=>{
@@ -128,7 +115,6 @@
           fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${prod.strCategory}`)
           .then(res=>res.json())
           .then(mealdata =>{
-
             mealslist.innerHTML=""
             mealdata.meals.forEach(meal=>{
               const mealcards= document.createElement("div")
@@ -140,25 +126,19 @@
               mealslist.append(mealcards);
             });
           });
-        });
-        
+        });        
       });
   })
   .catch(err=>console.log(err))
     const productContainer = document.querySelector("#product");
     const navLinks = document.querySelectorAll(".nav-link[data-category]");
-
-    
-
 navLinks.forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const category = link.getAttribute("data-category");
-
     // Hide main categories grid
     productContainer.style.display = "none";
     document.querySelector(".section").style.display = "none";
-
     // Show category title & description
     fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
       .then(res => res.json())
@@ -173,7 +153,6 @@ navLinks.forEach(link => {
           `;
         }
       });
-
     // Fetch and display meals
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       .then(res => res.json())
@@ -185,8 +164,6 @@ navLinks.forEach(link => {
       });
   });
 });
-
-
 // Function to display meals
 function disPlayMeals(meals){
   mealscontainer1.innerHTML = "";
@@ -204,19 +181,15 @@ function disPlayMeals(meals){
     mealCard.addEventListener("click",()=>{
       showMealDetails(meal.idMeal);
     });
-    mealscontainer1.appendChild(mealCard);
-  
+    mealscontainer1.appendChild(mealCard); 
   });
 }
-
-
    function fetchCategories() {
       fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
         .then(res => res.json())
         .then(data => displayCategories(data.categories))
         .catch(err => console.error(err));
     }
-
     //-------- Display categories----------
     function displayCategories(categories) {
       productContainer.innerHTML = "";
@@ -230,23 +203,17 @@ function disPlayMeals(meals){
           </a>
           <label>${prod.strCategory}</label>
         `;
-
         // Navigate to details page
         card.addEventListener("click", () => {
           window.location.href = `details.html?category=${prod.strCategory}`;
         });
-
         productContainer.appendChild(card);
       });
     }
     // productContainer.style.display="none"
     // document.querySelector(".section3").style.display = "none";
-
     fetchCategories();
-
   //---meals-------
-
-
   searchInput.addEventListener("keyup", (e)=>{
     if (e.key=== "Enter"){
       const searchText = e.target.value.trim();
@@ -268,29 +235,19 @@ function disPlayMeals(meals){
       });
     }
   })
-
-
 //----Search bar images links-------
-
-
   function fetchMealsByCategory(category){
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
     .then((res)=>res.json())
     .then((data)=>{
-     
       disPlayMeals(data.meals);
     })
     .catch(()=>{
       mealscontainer1.innerHTML="<p>Error fetching meals...</p>";
     });
   }
-
-
-
 </script>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
