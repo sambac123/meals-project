@@ -12,12 +12,21 @@
         color: orange;
 
       }
+       .icon2{
+        gap: 5px; 
+        border: 2px solid orangered;
+        display: inline;
+        padding: 5px;
+        border-radius: 100px;
+        color: black;
+        width: 30px;
+      }
       .inputs{
         border-radius: 30px;
         margin-top: 20px;
         padding: 10px;
-        width: 320px;
-        /* text-align: center; */
+        width: 300px;
+        height: 45px;
       }
       .searchbar{
         text-align: center;
@@ -34,8 +43,9 @@
         display: inline;
         padding: 10px;
         border-radius: 50px;
-        color: orangered;
+        color: black;
         width: 80px;
+        background-color: orangered;
       }
       /* #product{
         display: flex;

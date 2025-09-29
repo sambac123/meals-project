@@ -16,7 +16,8 @@ body{
         border-radius: 30px;
         margin-top: 20px;
         padding: 10px;
-        width: 320px; 
+        width: 300px;
+        height: 45px; 
       }
       .searchbar{
         text-align: center;
@@ -30,8 +31,9 @@ body{
         display: inline;
         padding: 10px;
         border-radius: 50px;
-        color: orangered;
+        color: black;
         width: 80px;
+        background-color: orangered;
       }
       #product{
         display: flex;
