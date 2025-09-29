@@ -12,6 +12,15 @@ body{
         border-radius: 100px;
         color: orange;
       }
+      .icon2{
+        gap: 5px; 
+        /* border: 2px solid orangered; */
+        display: inline;
+        padding: 5px;
+        border-radius: 100px;
+        color: black;
+        width: 30px;
+      }
       .inputs{
         border-radius: 30px;
         margin-top: 20px;

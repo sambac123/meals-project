@@ -18,7 +18,7 @@
       }
       .icon2{
         gap: 5px; 
-        border: 2px solid orangered;
+        /* border: 2px solid orangered; */
         display: inline;
         padding: 5px;
         border-radius: 100px;
